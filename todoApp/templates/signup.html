@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css\index.css'%}">
+    <title>Register</title>
+</head>
+<body>
+    <div class="container">
+    
+        <header class="head">Sign up</header>
+        <form class="login" action="{% url 'register' %}" method="post">
+             {% csrf_token %}
+                <input type="text" class="inp" placeholder="Enter your username" name="username" required>
+                <input type="email" class="inp" placeholder="Enter your email" name="email" required>
+                <input type="password" class="inp" placeholder="Enter your password" name="pwd" required>
+                
+                <input type="submit" value="Register" class="inp btn">
+                <p>
+                    Already have an account? <a href="{% url 'login' %}" class="">Login</a>
+                    
+                </p>
+        
+        
+
+            
+
+        </form>
+        
+        
+
+
+    </div>
+    
+</body>
+</html>

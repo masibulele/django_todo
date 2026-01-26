@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css\style.css'%}">
+    <title>My Task</title>
+</head>
+<body>
+    <div class="container">
+         <div class="signOut">
+                    <a href="{% url 'logout'%}">Sign Out</a>
+            </div>
+        <div class="todo-block">
+           
+            <div class="input-container">
+                <h2 class="">My Tasks <i class="fa-solid fa-pen-to-square"></i>
+                </h2>
+                
+            </div>
+            <div class="input-box">
+                <form action="{% url 'add'%}" method="post">
+                    {% csrf_token %}
+                    <input type="text" id="inp-1" placeholder="Add task here" name="task">
+                    <input type="submit" value="Add" id="inp-2">
+
+                </form>
+                
+            </div>
+            <div class="list-container">
+                <ul>
+                    {%for task in tasks%}
+                    <li class="list-item">
+                        <p>{{task}}</p> 
+                        <div class="list-btn">
+                            <a href="{% url 'edit' task.task_id %}">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </a>
+                            <a href="{% url 'del' task.task_id%}">
+                                <i class="fa-solid fa-xmark"></i>
+                            </a>
+                        </div>
+                    </li>
+                    {%endfor%}
+                    <li class="list-item">
+                        <p>Task 2</p> 
+                        <div class="list-btn">
+                            <a href="#">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fa-solid fa-xmark"></i>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="list-item">
+                        <p>Task 3</p> 
+                        <div class="list-btn">
+                            <a href="#">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fa-solid fa-xmark"></i>
+                            </a>
+                        </div>
+                    </li>
+                    
+                </ul>
+                
+                
+            </div>
+        </div>
+
+    </div>
+    
+</body>
+</html>
